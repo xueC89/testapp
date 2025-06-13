@@ -3,7 +3,7 @@ import style from './index.scss';
 import { observer } from 'mobx-react';
 import { View } from '@tarojs/components';
 
-const Home = () => {
+const List = () => {
 
   return (
     <View>
@@ -12,4 +12,4 @@ const Home = () => {
   )
 }
 
-export default observer(Home);
+export default observer(List);

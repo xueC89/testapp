@@ -1,9 +1,9 @@
+import { observer } from 'mobx-react';
 import React from 'react';
 import style from './index.scss';
-import { observer } from 'mobx-react';
 import { View } from '@tarojs/components';
 
-const Home = () => {
+const Friends = () => {
 
   return (
     <View>
@@ -12,4 +12,4 @@ const Home = () => {
   )
 }
 
-export default observer(Home);
+export default observer(Friends);
