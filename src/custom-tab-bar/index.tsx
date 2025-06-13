@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './index.scss';
 import { View } from '@tarojs/components';
 import { observer } from 'mobx-react';
@@ -28,14 +28,23 @@ const menuList = [
 ]
 
 const CustomTabBar = () => {
+  const pages = Taro.getCurrentPages();
+  const currentPage = pages[0];
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onSwitchTab = (url, index) => {
     Taro.switchTab({
       url
     });
-    setActiveIndex(index)
   }
+
+  // 处理bar的active
+  useEffect(() => {
+    const index = menuList.findIndex(item => item.pagePath === currentPage.route)
+    if (index > -1) {
+      setActiveIndex(index)
+    }
+  }, [currentPage.route])
 
   const renderMenu = () => {
     return menuList.map((menuItem, menuIndex) => {
@@ -43,9 +52,11 @@ const CustomTabBar = () => {
         <>
           <View
             key={menuItem.pagePath}
-            className={activeIndex === menuIndex ? "bar-container__item bar-container__item-active" : "bar-container__item"}
+            className={`${style.barItem} ${activeIndex === menuIndex ? style.activeItem : ''}`}
             onClick={() => { onSwitchTab('/' + menuItem.pagePath, menuIndex) }}
-          >{menuItem.text}</View>
+          >
+            {menuItem.text}
+          </View>
         </>
       )
     })
