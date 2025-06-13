@@ -4,25 +4,25 @@ export default defineAppConfig({
     'pages/home/index',
   ],
   window: {
-    backgroundTextStyle: 'lig,ht',
+    backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'DJ的画作管理工具',
     navigationBarTextStyle: 'black'
   },
-  tabBar: {
-    list: [
-      {
-        pagePath: 'pages/index/index',
-        text: '首页',
-        iconPath: './assets/images/home.png',
-        selectedIconPath: './assets/images/home-active.png'
-      },
-      {
-        pagePath: 'pages/home/index',
-        text: '我的',
-        iconPath: './assets/images/home.png',
-        selectedIconPath: './assets/images/home-active.png'
-      }
-    ]
-  }
+  // tabBar: {
+  //   list: [
+  //     {
+  //       pagePath: 'pages/index/index',
+  //       text: '首页',
+  //       iconPath: './assets/images/home.png',
+  //       selectedIconPath: './assets/images/home-active.png'
+  //     },
+  //     {
+  //       pagePath: 'pages/home/index',
+  //       text: '我的',
+  //       iconPath: './assets/images/home.png',
+  //       selectedIconPath: './assets/images/home-active.png'
+  //     }
+  //   ]
+  // }
 })

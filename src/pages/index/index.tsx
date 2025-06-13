@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Button, Text } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import { observer } from 'mobx-react'
 import { useInjectedStore } from '@/hooks';
 import style from './index.scss';
+import { Button } from '@nutui/nutui-react-taro'
 
 
 type Store = {

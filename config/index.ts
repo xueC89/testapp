@@ -1,14 +1,15 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
 import path from 'path';
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig<'vite'>(async (merge, { command, mode }) => {
-  const baseConfig: UserConfigExport<'vite'> = {
-    projectName: 'myApp',
-    date: '2025-6-6',
-    designWidth: 750,
+export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
+  const baseConfig: UserConfigExport<'webpack5'> = {
+    projectName: 'app',
+    date: '2025-6-12',
+    designWidth: 375,
     deviceRatio: {
       640: 2.34 / 2,
       750: 1,
@@ -17,7 +18,7 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: [],
+    plugins: ['@tarojs/plugin-html'],
     defineConstants: {
     },
     copy: {
@@ -27,16 +28,25 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
       }
     },
     framework: 'react',
-    compiler: 'vite',
+    compiler: {
+
+      type: 'webpack5',
+      prebundle: {
+        enable: false
+      }
+    },
     alias: {
       '@': path.resolve(__dirname, '..', 'src'),
+    },
+    cache: {
+      enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
     mini: {
       postcss: {
         pxtransform: {
           enable: true,
           config: {
-
+            selectorBlackList: ['nut-']
           }
         },
         cssModules: {
@@ -47,11 +57,17 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
           }
         }
       },
+      webpackChain(chain) {
+        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+      }
     },
     h5: {
       publicPath: '/',
       staticDirectory: 'static',
-
+      output: {
+        filename: 'js/[name].[hash:8].js',
+        chunkFilename: 'js/[name].[chunkhash:8].js'
+      },
       miniCssExtractPluginOption: {
         ignoreOrder: true,
         filename: 'css/[name].[hash].css',
@@ -70,6 +86,9 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
           }
         }
       },
+      webpackChain(chain) {
+        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+      }
     },
     rn: {
       appName: 'taroDemo',
