@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React from 'react';
-import style from './style.scss';
+import style from './style.module.scss';
 
 interface CreatAlbumProps {
   title: string;

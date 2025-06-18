@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.scss';
+import style from './style.module.scss';
 import { observer } from 'mobx-react';
 
 interface FooterBarProps {

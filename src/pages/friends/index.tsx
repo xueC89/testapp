@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React from 'react';
-import style from './index.scss';
+import style from './index.module.scss';
 import { View } from '@tarojs/components';
 
 const Friends = () => {

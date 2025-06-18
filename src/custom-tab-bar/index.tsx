@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import style from './index.scss';
+import style from './index.module.scss';
 import { View } from '@tarojs/components';
 import { observer } from 'mobx-react';
 import Taro from '@tarojs/taro';
@@ -10,19 +10,19 @@ const menuList = [
     text: '首页',
   },
   {
-    pagePath: 'pages/home/index',
+    pagePath: 'pages/list/index',
     text: '画集',
   },
   {
-    pagePath: '',
+    pagePath: 'null',
     text: '上传',
   },
   {
-    pagePath: 'pages/home/index',
+    pagePath: 'pages/friends/index',
     text: '好友圈',
   },
   {
-    pagePath: 'pages/home/index',
+    pagePath: 'pages/mine/index',
     text: '我的',
   },
 ]
@@ -68,5 +68,9 @@ const CustomTabBar = () => {
     </View>
   )
 }
+
+// CustomTabBar.options = {
+//   addGlobalClass: true,
+// }
 
 export default observer(CustomTabBar);

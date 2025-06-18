@@ -2,8 +2,9 @@ import React from 'react'
 import { View, Text } from '@tarojs/components'
 import { observer } from 'mobx-react'
 import { useInjectedStore } from '@/hooks';
-import style from './index.scss';
+import style from './index.module.scss';
 import { Button } from '@nutui/nutui-react-taro'
+import Taro from '@tarojs/taro';
 
 
 type Store = {
@@ -29,8 +30,11 @@ const Index: React.FC = () => {
   }
 
   const incrementAsync = () => {
-    const { counterStore } = store
-    counterStore.incrementAsync()
+    // const { counterStore } = store
+    // counterStore.incrementAsync()
+    Taro.switchTab({
+      url: '/pages/home/index'
+    })
   }
 
   const { counterStore: { counter } } = store

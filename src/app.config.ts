@@ -1,6 +1,6 @@
 export default defineAppConfig({
   pages: [
-    'pages/index/index',
+    // 'pages/index/index',
     'pages/home/index',
     'pages/list/index',
     'pages/friends/index',
@@ -13,27 +13,32 @@ export default defineAppConfig({
     navigationBarTextStyle: 'black'
   },
   tabBar: {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
     list: [
       {
         pagePath: 'pages/home/index',
         text: '首页',
       },
       {
-        pagePath: 'pages/home/index',
+        pagePath: 'pages/list/index',
         text: '画集',
       },
+      // {
+      //   pagePath: 'null',
+      //   text: '上传',
+      // },
       {
-        pagePath: '',
-        text: '上传',
-      },
-      {
-        pagePath: 'pages/home/index',
+        pagePath: 'pages/friends/index',
         text: '好友圈',
       },
       {
-        pagePath: 'pages/home/index',
+        pagePath: 'pages/mine/index',
         text: '我的',
       },
     ]
-  }
+  },
+  "usingComponents": {}
 })
